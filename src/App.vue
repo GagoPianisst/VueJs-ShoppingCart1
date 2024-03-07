@@ -18,9 +18,13 @@ const items = ref ([
 
 <template>
   <h1><i :class="shoppingIcon">local_mall</i>{{ header }}</h1>
-  <input v-model="newItem" type="text" placeholder="Agregar Articulo">
-  <!-- Radio Buttons  -->
-  <label><input type="checkbox" v-model="newItemHightPriority" >Alta Prioridad</label>
+  <div class="add-item form">
+    <input v-model="newItem" type="text" placeholder="Agregar Articulo">
+    <!-- Checkbox  -->
+    <label><input type="checkbox" v-model="newItemHightPriority" >Alta Prioridad</label>
+    <!-- Boton -->
+    <button class="btn-primary" v-on:click="items.push({id: items.length, label: newItem})">Agregar Articulo</button>
+  </div>
   <ul>
    <li v-for="{id, label} in items" v-bind:key="id">⭐ {{ label }}</li>
   </ul>
