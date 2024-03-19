@@ -142,7 +142,11 @@ li input {
 
 .strikeout {
   text-decoration: line-through;
-  color: #8795a1;
+  color: #696f74;
+}
+
+.strikeout:hover {
+  color: #8795a1
 }
 
 .priority {

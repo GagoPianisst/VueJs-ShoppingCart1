@@ -6,11 +6,11 @@ const header = ref('App Lista de Compras');
 const shoppingIcon = ref ('material-icons shopping-cart-icon');
 // Creando una referencia reactiva para almacenar el valor de la lista
 const items = ref ([
-  // {id: 0, label:'Leche'}, 
-  // {id: 1, label:'Arroz'}, 
-  // {id: 2, label:'Carne'}, 
-  // {id: 3, label:'Pan'}, 
-  // {id: 4, label:'Huevos'}
+  {id: 0, label:'Leche', purchased: false, highPriority: true}, 
+  {id: 1, label:'Arroz', purchased: false, highPriority: false }, 
+  {id: 2, label:'Carne', purchased: true, highPriority: false}, 
+  {id: 3, label:'Pan', purchased: false, highPriority: true}, 
+  {id: 4, label:'Huevos', purchased: true, highPriority: true}
   ]);
   const newItem = ref('');
   const newItemHightPriority = ref(false);
@@ -56,7 +56,12 @@ const items = ref ([
   </form>
   <!-- Entrega de Lista -->
   <ul>
-   <li v-for="{id, label} in items" v-bind:key="id">⭐ {{ label }}</li>
+   <li 
+   v-for="{id, label, purchased, highPriority} in items" 
+   :class="{priority: highPriority,strikeout: purchased}"
+   v-bind:key="id">
+   ⭐ {{ label }}
+   </li>
   </ul>
   <!-- Mensaje Condicional -->
   <p v-if="items.length === 0">🥀No hay elementos en la lista</p>
