@@ -1,6 +1,6 @@
 <script setup>
 // Importando funcion para crear referencias reactivas
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 //Creando un tipo de referencia reactiva de tipo string
 const header = ref('App Lista de Compras');
 const shoppingIcon = ref ('material-icons shopping-cart-icon');
@@ -16,6 +16,10 @@ const items = ref ([
     item.purchased = !item.purchased
   };
   const newItem = ref('');
+  //Creamdp propiedad computada
+  const characterCount = computed(()=>{
+    return newItem.value.length;
+  });
   const newItemHightPriority = ref(false);
   const showForm = ref(false);
   // Metodos
@@ -58,6 +62,9 @@ const items = ref ([
     <label><input type="checkbox" v-model="newItemHightPriority" >Alta Prioridad</label>
     <!-- Boton -->
     <button class="btn-primary">Agregar Articulo</button>
+    <p class="counter">
+      {{ characterCount }} / 200
+    </p>
   </form>
   <!-- Entrega de Lista -->
   <ul>
