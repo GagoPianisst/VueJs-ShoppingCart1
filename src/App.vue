@@ -12,6 +12,10 @@ const items = ref ([
   // {id: 3, label:'Pan', purchased: false, highPriority: true}, 
   // {id: 4, label:'Huevos', purchased: true, highPriority: true}
   ]);
+  const reverseItems = computed(()=> {
+    //Regresar una version invertida del arreglo items
+    return [...items.value]. reverse()
+  })
   const togglePurchased = (item) => {
     item.purchased = !item.purchased
   };
@@ -69,8 +73,8 @@ const items = ref ([
   <!-- Entrega de Lista -->
   <ul>
    <li 
-   v-for="({id, label, purchased, highPriority}, index) in items" 
-   @click="togglePurchased(items[index])"
+   v-for="({id, label, purchased, highPriority}, index) in reverseItems" 
+   @click="togglePurchased(reverseItems[index])"
    :class="{priority: highPriority,strikeout: purchased}"
    v-bind:key="id">
    ⭐ {{ label }}
